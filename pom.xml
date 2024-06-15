@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                ca.georgiancollege.democomp1011midtermprep/ca.georgiancollege.democomp1011midtermprep.HelloApplication
+                                ca.georgiancollege.democomp1011midtermprep/ca.georgiancollege.democomp1011midtermprep.MainApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
