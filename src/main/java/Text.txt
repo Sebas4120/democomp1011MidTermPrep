@@ -1,4 +1,26 @@
 We going to go over an application that is connected to a AWS database that uses multiple pages
 
-Passing data from One screen to another screen
+Passing data from One screen to another screen, One controller to another
 
+1. En BaseController
+    No colocamos en page1-view el fx:controller="..." porque lo estamos
+    configurando ya en el controller con la linea 35 de BaseController
+    fxmlLoader.setController(this);
+
+ojo: If you have a controller that is not attached to a view,
+you can not attach an ONACTION in the view.
+
+ojo: If you are passing data from 1 controller to another, no ON ACTION
+
+2. DBUtil
+    This is class where we provide interaction with the database
+
+3.BaseModel
+    Colocamos el nombre de nuestra BASE DE DATOS y la TABLA que vamos a utilizar
+
+4. Model
+   OJO: Todos los argumentos del TEXTFIELD se obtienen con getText() y te dan STRING.
+    Si necesitas un INT, debes hacer un Integer.parseInt().
+
+
+5. Page1Controller

@@ -14,12 +14,17 @@ public class Page1Controller extends BaseController {
     @FXML
     private Button history, submit, clear;
 
+    //This onChangeOptions is an arraylist, whatever the user chooses String or StringBuilder
+    //The OnChangeOptions will give them the methods for the specific datatype
     private ArrayList<String> onChangeOptions = new ArrayList<>();
+
     @FXML
     private TextField stats_stringbuilder, stats_strings, stats_total,tb_arguments, tb_content, tb_results;
 
     private Model model = new Model();
 
+    //Setting the title and view file for the controller
+    //Estas indicando que al correr
     public Page1Controller(String title, String viewFile) {
         super(title, viewFile);
     }

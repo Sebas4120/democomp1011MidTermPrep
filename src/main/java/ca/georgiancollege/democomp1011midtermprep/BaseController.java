@@ -22,14 +22,17 @@ public abstract class BaseController {
         this.stage = stage;
     }
 
+    //In order to instantiate a BaseController object, we need to pass in a title and a viewFile
     public BaseController(String title, String viewFile){
         this.title = title;
         this.viewFile = viewFile;
     }
+
     void openPage() throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource(viewFile + "-view.fxml"));
 
+        //"this" is refering o an object of this class
         fxmlLoader.setController(this);
 
         Scene scene = new Scene(fxmlLoader.load());
@@ -40,6 +43,14 @@ public abstract class BaseController {
         stage.setScene(scene);
         stage.show();
     }
+
+    //Method to display alerts
+    //Sí, Alert.AlertType es una clase interna estática predefinida
+    // en la clase Alert de JavaFX.
+
+    //La clase Alert en JavaFX proporciona una forma de mostrar diferentes tipos de
+    // cuadros de diálogo (diálogos de alerta) al usuario, como mensajes de información,
+    // advertencias y errores.
 
     public  void displaySuccessAlert(String title, String message){
         displayAlert(Alert.AlertType.INFORMATION, title, message);

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 public class Model extends BaseModel {
 
+    //private instance variables
     private String dataType, content, arguments, method, results;
 
     public Model(){}
@@ -15,8 +16,9 @@ public class Model extends BaseModel {
         setArguments(arguments.toLowerCase());
         setMethod(method.toLowerCase());
         setContent(content);
-
+        //We are going to generate the results by calling the method 'setResults'
         setResults();
+        //We are going to insert the row into our database
         insertRow();
     }
 
@@ -37,11 +39,14 @@ public class Model extends BaseModel {
         return dataType;
     }
 
+//Validation Method
+    //Method to throw an error if the value is too short
     private void throwTooShortError(String title, String value, int minLength){
         if(value.length() < minLength)
             throw new IllegalArgumentException(title + "is too short. Needs to be at least " + minLength + "characters");
 
     }
+    //Data Type does have restrictions for mimimum
     public void setDataType(String dataType) {
         throwTooShortError("Data Type", dataType, 5);
         this.dataType = dataType;
@@ -50,16 +55,18 @@ public class Model extends BaseModel {
     public String getContent() {
         return content;
     }
-
+    //Content does have restrictions for mimimum
     public void setContent(String content) {
         throwTooShortError("Content", content, 5);
         this.content = content;
     }
 
+
     public String getArguments() {
         return arguments;
     }
 
+    //Arguments does not have restrictions for mimimum
     public void setArguments(String arguments) {
         this.arguments = arguments;
     }
@@ -67,11 +74,12 @@ public class Model extends BaseModel {
     public String getMethod() {
         return method;
     }
-
+    //Method does have restrictions for mimimum
     public void setMethod(String method) {
         throwTooShortError("Method", method, 4);
         this.method = method;
     }
+
 
     private void setResults() {
         int index;
@@ -98,6 +106,10 @@ public class Model extends BaseModel {
                         results = content.endsWith(arguments) + "";
                         break;
                     case "startswith":
+                        //Se debe entender de dos formas, si es usuario ingresa:
+                        // Palabra: Hello // Argumento: H ......length del argumento (pieces) =1
+                        // Palabra: Hello // Argumento: H, 1........length del argumento (pieces) =2
+
                         String[] pieces = arguments.split(",");
                         if(pieces.length == 1)
                             results = content.startsWith(arguments) + "";
@@ -117,7 +129,9 @@ public class Model extends BaseModel {
                         break;
                     case "insert":
                         String[] pieces = arguments.split(",");
+                        //It is the index where you want to add the new argument
                         index = Integer.parseInt(pieces[0]);
+                        //This is what you want to add
                         String add = pieces[1];
                         results = sb.insert(index, add).toString();
                         break;
@@ -138,6 +152,9 @@ public class Model extends BaseModel {
     public String getResults(){
         return results;
     }
+
+    //This method is going to return the total number of rows in the database
+    //This is going to get the total value depending on the datatype
     public int getQueryTotal(String dataType) throws SQLException {
         String sql = "select count(*) as num from " + getTable() +
                 " where datatype = '"+dataType+"'";

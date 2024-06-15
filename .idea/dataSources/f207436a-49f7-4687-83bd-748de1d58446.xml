@@ -1020,10 +1020,11 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Charset>utf8mb4</Charset>
     </collation>
     <schema id="288" parent="1" name="COMP1011">
-      <LastIntrospectionLocalTimestamp>2024-06-15.03:31:27</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-06-15.12:09:13</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="289" parent="1" name="WEEK6">
+      <LastIntrospectionLocalTimestamp>2024-06-15.12:09:32</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="290" parent="1" name="information_schema">
@@ -1058,45 +1059,33 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Host>localhost</Host>
       <Plugin>auth_socket</Plugin>
     </user>
-    <table id="299" parent="288" name="ONTARIO">
+    <table id="299" parent="289" name="StringAndStringBuilder">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <column id="300" parent="299" name="ID">
-      <AutoIncrement>55</AutoIncrement>
+    <column id="300" parent="299" name="id">
       <DasType>int|0s</DasType>
-      <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="301" parent="299" name="YEAR">
-      <DasType>varchar(50)|0s</DasType>
-      <NotNull>1</NotNull>
+    <column id="301" parent="299" name="datatype">
+      <DasType>varchar(100)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="302" parent="299" name="POPULATION">
-      <DasType>int|0s</DasType>
-      <NotNull>1</NotNull>
+    <column id="302" parent="299" name="content">
+      <DasType>varchar(100)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="303" parent="299" name="MALE">
-      <DasType>int|0s</DasType>
-      <NotNull>1</NotNull>
+    <column id="303" parent="299" name="method">
+      <DasType>varchar(100)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="304" parent="299" name="FEMALE">
-      <DasType>int|0s</DasType>
-      <NotNull>1</NotNull>
+    <column id="304" parent="299" name="args">
+      <DasType>varchar(100)|0s</DasType>
       <Position>5</Position>
     </column>
-    <index id="305" parent="299" name="PRIMARY">
-      <ColNames>ID</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <key id="306" parent="299" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <Primary>1</Primary>
-      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
-    </key>
+    <column id="305" parent="299" name="result">
+      <DasType>varchar(100)|0s</DasType>
+      <Position>6</Position>
+    </column>
   </database-model>
 </dataSource>
