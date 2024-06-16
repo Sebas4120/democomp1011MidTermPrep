@@ -22,6 +22,7 @@ public class Model extends BaseModel {
         insertRow();
     }
 
+    //INSERTAR LOS NUEVOS DATOS A LA BASE DE DATOS
     private void insertRow() throws SQLException {
 
         preparedStatement = connection.prepareStatement("insert into " + getTable()+
@@ -47,6 +48,7 @@ public class Model extends BaseModel {
                     + minLength + "characters");
 
     }
+//Getters and Setters
     //Data Type does have restrictions for mimimum
     public void setDataType(String dataType) {
         throwTooShortError("Data Type", dataType, 5);

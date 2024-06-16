@@ -18,7 +18,7 @@ public class DBUtil {
     //Constructor 1
     public DBUtil(String database) {
         this.database = database;
-        connectionString = "jdbc:mysql://database-1.cr4g0gw0k10a.us-west-2.rds.amazonaws.com:3306";
+        connectionString = "jdbc:mysql://database-1.cpiiw6m2micq.us-east-2.rds.amazonaws.com:3306";
         username = "admin";
         password = "Narangita412.";
 
@@ -29,6 +29,7 @@ public class DBUtil {
                     username, password);
         }
         catch (Exception e){
+            System.out.println("Connection is not initialized.");
             System.err.println(e);
         }
     }
