@@ -22,6 +22,7 @@ public abstract class BaseController {
         this.stage = stage;
     }
 
+    //CON ESTO ENLAZAMOS EL CONTROLLER CON EL VIEW CORRESPONDIENTE
     //In order to instantiate a BaseController object, we need to pass in a title and a viewFile
     public BaseController(String title, String viewFile){
         this.title = title;
@@ -30,9 +31,15 @@ public abstract class BaseController {
 
     void openPage() throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource(viewFile + "-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.
+                getResource(viewFile + "-view.fxml"));
 
-        //"this" is refering o an object of this class
+        //"this" is refering To an object of this class
+
+        //Esta línea de código establece el controlador para el archivo
+        // FXML que se está cargando. En otras palabras, le dice al
+        // FXMLLoader que utilice la instancia actual de BaseController
+        // como el controlador para el archivo FXML que se está cargando.
         fxmlLoader.setController(this);
 
         Scene scene = new Scene(fxmlLoader.load());
@@ -64,7 +71,6 @@ public abstract class BaseController {
         alert.setTitle(title);
         alert.setContentText(message);
         alert.show();
-
     }
 
 }

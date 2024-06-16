@@ -33,10 +33,18 @@ public class DBUtil {
         }
     }
 
+    //Con este contructor se creo:
+    //    public class BaseModel extends DBUtil{
+    //        public BaseModel(){
+    //            super("WEEK6", "StringAndStringBuilder");
+    //        }
+    //    }
     public DBUtil(String database, String table){
         this(database);
         setTable(table);
     }
+
+    //Getters and Setters
     public String getTable() {
         return table;
     }
@@ -44,6 +52,7 @@ public class DBUtil {
     public void setTable(String table) {
         this.table = table;
     }
+
 //El método queryExec en la clase DBUtil está diseñado para ejecutar comandos SQL
 // que no devuelven un conjunto de resultados (es decir, comandos UPDATE, DELETE,
 // INSERT, y cualquier otro tipo de comando SQL que modifique la base de datos pero
@@ -66,11 +75,24 @@ public class DBUtil {
         return preparedStatement.executeQuery();
     }
 
-//tO GET INFORMATION FROM AN SPECIFIC ROW OF A TABLE
+//TO GET INFORMATION FROM AN SPECIFIC ROW OF A TABLE
+
+    //El método getRowById está diseñado para obtener una fila específica de una
+    // tabla de base de datos utilizando el id de esa fila.
     public ResultSet getRowById(String table, int id) throws SQLException{
 
+//        Preparar la Consulta SQL
+
+        //Llama al método prepareStatement en el objeto connection
+        // (una instancia de Connection que representa la conexión
+        // a la base de datos).
         preparedStatement = connection.prepareStatement("select * from "+table+" where id = ?");
+        //Este método establece el valor del primer (y en este caso, único) parámetro en
+        // la consulta preparada. El 1 indica la posición del parámetro en la consulta
+        // (el primer ?), y id es el valor que se establece.
         preparedStatement.setInt(1, id);
+        //Este método ejecuta la consulta SQL y devuelve un ResultSet
+        // que contiene los resultados de la consulta.
         return preparedStatement.executeQuery();
     }
 

@@ -16,6 +16,7 @@ public class Page1Controller extends BaseController {
 
     //This onChangeOptions is an arraylist, whatever the user chooses String or StringBuilder
     //The OnChangeOptions will give them the methods for the specific datatype
+    //in this list all the methods will be stored, methods from 'String' or 'StringBuilder'
     private ArrayList<String> onChangeOptions = new ArrayList<>();
 
     @FXML
@@ -24,29 +25,33 @@ public class Page1Controller extends BaseController {
     private Model model = new Model();
 
     //Setting the title and view file for the controller
-    //Estas indicando que al correr
+    //Constructor where we pass in the title and the viewfile that the controller will control
     public Page1Controller(String title, String viewFile) {
         super(title, viewFile);
     }
 
+    //Los totales
     private int totalStringQueries, totalStringBuilderQueries;
 
     private void initDataTypes(){
         cb_datatype.getItems().add("String");
         cb_datatype.getItems().add("StringBuilder");
     }
+
     private void updatePageStats(){
         stats_strings.setText(totalStringQueries + "");
         stats_stringbuilder.setText(totalStringBuilderQueries + "");
         stats_total.setText((totalStringQueries + totalStringBuilderQueries) + "");
-
     }
+
     @FXML
     private void initialize(){
 
         initDataTypes();
 
         try {
+            //Esto es para la memoria de cuantos String y StringBuilder ya hay en la DB
+            //Para que aparezcan la cantidad de 'String' y 'StringBuilder' que hay en la memoria
             totalStringQueries = model.getQueryTotal("string");
             totalStringBuilderQueries = model.getQueryTotal("stringbuilder");
             updatePageStats();
@@ -55,6 +60,7 @@ public class Page1Controller extends BaseController {
             displayErrorAlert("Total Retrieval Error", ex.getMessage());
             System.out.println(ex);
         }
+
 
         submit.setOnAction(event -> {
             if(cb_datatype.getSelectionModel().getSelectedIndex() == -1) {
@@ -68,12 +74,17 @@ public class Page1Controller extends BaseController {
 
             try{
                 model.run(dataType, content, method, arguments);
+
                 tb_results.setText(model.getResults());
+
                 displaySuccessAlert("Success", "Form Successfully Submitted to Database");
 
+                //Si el usuario elige 'String' se incrementa el total de StringQueries
+                //el equalsIgnoreCase es para que no importe si el usuario escribe 'String' o 'string'
                 if(cb_datatype.getSelectionModel().getSelectedItem().equalsIgnoreCase("string"))
                     totalStringQueries++;
                 else
+                    //Si el usuario elige 'StringBuilder' se incrementa el total de StringBuilderQueries
                     totalStringBuilderQueries++;
 
                 updatePageStats();
@@ -87,8 +98,11 @@ public class Page1Controller extends BaseController {
 
         history.setOnAction(event -> {
             try{
+                //CHANGING SCENES
+                //Instantiate an object of the new controller 'Page2Controller'
                 Page2Controller controller = new Page2Controller("Page 2", "page2");
                 controller.setLastQuery(model.toString());
+                System.out.println(model.toString());
                 controller.openPage();
             }
             catch (Exception ex){
@@ -99,6 +113,7 @@ public class Page1Controller extends BaseController {
 
         cb_datatype.setOnAction(event -> {
 
+            //Con esto se registra lo que ha seleccionado el usuario
             String dataTypeSelected = cb_datatype.getSelectionModel().getSelectedItem();
             onChangeOptions.clear();
 

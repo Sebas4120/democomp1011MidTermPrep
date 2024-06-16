@@ -8,7 +8,7 @@ Passing data from One screen to another screen, One controller to another
     fxmlLoader.setController(this);
 
 ojo: If you have a controller that is not attached to a view,
-you can not attach an ONACTION in the view.
+you can NOT attach an ON ACTION in the view.
 
 ojo: If you are passing data from 1 controller to another, no ON ACTION
 

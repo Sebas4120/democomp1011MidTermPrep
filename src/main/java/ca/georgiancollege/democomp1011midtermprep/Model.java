@@ -43,7 +43,8 @@ public class Model extends BaseModel {
     //Method to throw an error if the value is too short
     private void throwTooShortError(String title, String value, int minLength){
         if(value.length() < minLength)
-            throw new IllegalArgumentException(title + "is too short. Needs to be at least " + minLength + "characters");
+            throw new IllegalArgumentException(title + "is too short. Needs to be at least "
+                    + minLength + "characters");
 
     }
     //Data Type does have restrictions for mimimum
@@ -108,7 +109,8 @@ public class Model extends BaseModel {
                     case "startswith":
                         //Se debe entender de dos formas, si es usuario ingresa:
                         // Palabra: Hello // Argumento: H ......length del argumento (pieces) =1
-                        // Palabra: Hello // Argumento: H, 1........length del argumento (pieces) =2
+                        // Palabra: Hello // Argumento: H, 1 (LA PALABRA EMPIEZA CON h DESDE EL
+                        // INDEX 1)........length del argumento (pieces) =2
 
                         String[] pieces = arguments.split(",");
                         if(pieces.length == 1)
@@ -156,8 +158,11 @@ public class Model extends BaseModel {
     //This method is going to return the total number of rows in the database
     //This is going to get the total value depending on the datatype
     public int getQueryTotal(String dataType) throws SQLException {
+        //Construcción de la Consulta SQL
         String sql = "select count(*) as num from " + getTable() +
-                " where datatype = '"+dataType+"'";
+                " where datatype = '" + dataType + "'";
+        // Se asume que este método ejecuta la consulta SQL y devuelve un
+        // ResultSet que contiene el resultado de la consulta.
         ResultSet resultSet = queryResult(sql);
         resultSet.next();
         return resultSet.getInt(1);
