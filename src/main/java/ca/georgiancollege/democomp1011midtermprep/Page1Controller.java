@@ -50,8 +50,8 @@ public class Page1Controller extends BaseController {
         initDataTypes();
 
         try {
-            //Esto es para la memoria de cuantos String y StringBuilder ya hay en la DB
-            //Para que aparezcan la cantidad de 'String' y 'StringBuilder' que hay en la memoria
+    //Esto es para la memoria de cuantos String y StringBuilder ya hay en la DB
+    //Para que aparezcan la cantidad de 'String' y 'StringBuilder' que hay en la memoria
             totalStringQueries = model.getQueryTotal("string");
             totalStringBuilderQueries = model.getQueryTotal("stringbuilder");
             updatePageStats();
@@ -63,16 +63,20 @@ public class Page1Controller extends BaseController {
 
 
         submit.setOnAction(event -> {
+
+        //Validar que el usuario haya escogido un tipo de dato
             if(cb_datatype.getSelectionModel().getSelectedIndex() == -1) {
                 displayErrorAlert("Choose Data Type", "Please choose Data Type before submitting");
                 return;
             }
+        //En caso haya escogido un tipo de dato, seguimos con la obtencion de datos
             String dataType = cb_datatype.getSelectionModel().getSelectedItem();
             String content = tb_content.getText();
             String arguments = tb_arguments.getText();
             String method = cb_method.getSelectionModel().getSelectedItem();
 
             try{
+                //Corre el metodo RUN
                 model.run(dataType, content, method, arguments);
 
                 tb_results.setText(model.getResults());

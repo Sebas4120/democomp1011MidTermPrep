@@ -22,8 +22,8 @@ public abstract class BaseController {
         this.stage = stage;
     }
 
-    //CON ESTO ENLAZAMOS EL CONTROLLER CON EL VIEW CORRESPONDIENTE
-    //In order to instantiate a BaseController object, we need to pass in a title and a viewFile
+//CON ESTO ENLAZAMOS EL CONTROLLER CON EL VIEW CORRESPONDIENTE
+//In order to instantiate a BaseController object, we need to pass in a title and a viewFile
     public BaseController(String title, String viewFile){
         this.title = title;
         this.viewFile = viewFile;

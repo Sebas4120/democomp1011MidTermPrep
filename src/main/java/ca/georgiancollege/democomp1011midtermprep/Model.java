@@ -11,7 +11,9 @@ public class Model extends BaseModel {
 
     public Model(){}
 
-    public void run(String dataType, String content, String method, String arguments) throws Exception {
+    //
+    public void run(String dataType, String content, String method, String arguments)
+            throws Exception {
         setDataType(dataType.toLowerCase());
         setArguments(arguments.toLowerCase());
         setMethod(method.toLowerCase());
@@ -36,11 +38,7 @@ public class Model extends BaseModel {
         preparedStatement.setString(5, results);
         preparedStatement.execute();
     }
-    public String getDataType() {
-        return dataType;
-    }
-
-//Validation Method
+    //Validation Method
     //Method to throw an error if the value is too short
     private void throwTooShortError(String title, String value, int minLength){
         if(value.length() < minLength)
@@ -48,16 +46,22 @@ public class Model extends BaseModel {
                     + minLength + "characters");
 
     }
-//Getters and Setters
+
+    //Getters and Setters
     //Data Type does have restrictions for mimimum
     public void setDataType(String dataType) {
         throwTooShortError("Data Type", dataType, 5);
         this.dataType = dataType;
     }
 
+    public String getDataType() {
+        return dataType;
+    }
+
     public String getContent() {
         return content;
     }
+
     //Content does have restrictions for mimimum
     public void setContent(String content) {
         throwTooShortError("Content", content, 5);
